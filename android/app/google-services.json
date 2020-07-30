@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "216642606005",
+    "firebase_url": "https://jan-dhan-darshak-b3e62.firebaseio.com",
+    "project_id": "jan-dhan-darshak-b3e62",
+    "storage_bucket": "jan-dhan-darshak-b3e62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216642606005:android:9b379c8b902f5945bdbffc",
+        "android_client_info": {
+          "package_name": "com.example.jan_dhan_darshak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216642606005-uuvvu6lsiqlohdcqm9fvf3irl2gvplnu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_Zxl9TyCp2WbhhCHWBRw0vUMxkbkwd48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216642606005-uuvvu6lsiqlohdcqm9fvf3irl2gvplnu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
