@@ -37,33 +37,24 @@ class _ExploreSheetAtmState extends State<ExploreSheetAtm> {
                     ftp['latlong'].latitude,
                     ftp['latlong'].longitude)
                 .then((value) {
-              if (value < 10000) {
-                var distance = value.floor();
-                String _distance = '';
-                if (distance < 1000)
-                  _distance = '($distance m)';
-                else {
-                  var dist = (distance / 1000).toStringAsFixed(1);
-                  _distance = '($dist km)';
-                }
-                final Atm atm = Atm(
-                  documentId: docs.documents[i].documentID,
-                  latitude: ftp['latlong'].latitude,
-                  longitude: ftp['latlong'].longitude,
-                  atmCode: ftp['atm_code'],
-                  bank: ftp['bank'],
-                  pincode: ftp['pincode'],
-                  atmTiming: ftp['atm_timings'],
-                  address: ftp['address'],
-                  city: ftp['city'],
-                  district: ftp['district'],
-                  state: ftp['state'],
-                  distance: _distance,
-                );
-                setState(() {
-                  atms.add(atm);
-                });
-              }
+              final Atm atm = Atm(
+                documentId: docs.documents[i].documentID,
+                latitude: ftp['latlong'].latitude,
+                longitude: ftp['latlong'].longitude,
+                atmCode: ftp['atm_code'],
+                bank: ftp['bank'],
+                pincode: ftp['pincode'],
+                atmTiming: ftp['atm_timings'],
+                address: ftp['address'],
+                city: ftp['city'],
+                district: ftp['district'],
+                state: ftp['state'],
+                distance: value,
+              );
+              setState(() {
+                atms.add(atm);
+                atms.sort((a, b) => a.distance.compareTo(b.distance));
+              });
             });
           }
         }
@@ -235,6 +226,17 @@ class _ExploreSheetAtmState extends State<ExploreSheetAtm> {
     );
   }
 
+  String _getDistance(distance) {
+    String string = '';
+    if (distance < 1000) {
+      string = '($distance m)';
+    } else {
+      var dist = (distance / 1000).toStringAsFixed(1);
+      string = '($dist km)';
+    }
+    return string;
+  }
+
   _nearbyAtm(int index, BuildContext context) {
     return ListTile(
       onTap: () {
@@ -260,7 +262,7 @@ class _ExploreSheetAtmState extends State<ExploreSheetAtm> {
                   height: 5,
                 ),
                 Text(
-                  atms[index].distance,
+                  _getDistance(atms[index].distance.floor()),
                   style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.grey[700],
@@ -380,35 +382,26 @@ class _ExploreSheetBankState extends State<ExploreSheetBank> {
                     ftp['latlong'].latitude,
                     ftp['latlong'].longitude)
                 .then((value) {
-              if (value < 10000) {
-                var distance = value.floor();
-                String _distance = '';
-                if (distance < 1000)
-                  _distance = '($distance m)';
-                else {
-                  var dist = (distance / 1000).toStringAsFixed(1);
-                  _distance = '($dist km)';
-                }
-                final Bank bank = Bank(
-                  documentId: docs.documents[i].documentID,
-                  latitude: ftp['latlong'].latitude,
-                  longitude: ftp['latlong'].longitude,
-                  ifscCode: ftp['ifscCode'],
-                  bankName: ftp['bank_name'],
-                  branch: ftp['branch'],
-                  bsrCode: ftp['bsrCode'],
-                  pincode: ftp['pincode'],
-                  bankTiming: ftp['bank_timings'],
-                  address: ftp['address'],
-                  city: ftp['city'],
-                  district: ftp['district'],
-                  state: ftp['state'],
-                  distance: _distance,
-                );
-                setState(() {
-                  banks.add(bank);
-                });
-              }
+              final Bank bank = Bank(
+                documentId: docs.documents[i].documentID,
+                latitude: ftp['latlong'].latitude,
+                longitude: ftp['latlong'].longitude,
+                ifscCode: ftp['ifscCode'],
+                bankName: ftp['bank_name'],
+                branch: ftp['branch'],
+                bsrCode: ftp['bsrCode'],
+                pincode: ftp['pincode'],
+                bankTiming: ftp['bank_timings'],
+                address: ftp['address'],
+                city: ftp['city'],
+                district: ftp['district'],
+                state: ftp['state'],
+                distance: value,
+              );
+              setState(() {
+                banks.add(bank);
+                banks.sort((a, b) => a.distance.compareTo(b.distance));
+              });
             });
           }
         }
@@ -580,6 +573,17 @@ class _ExploreSheetBankState extends State<ExploreSheetBank> {
     );
   }
 
+  String _getDistance(distance) {
+    String string = '';
+    if (distance < 1000) {
+      string = '($distance m)';
+    } else {
+      var dist = (distance / 1000).toStringAsFixed(1);
+      string = '($dist km)';
+    }
+    return string;
+  }
+
   _nearbyBank(int index, BuildContext context) {
     return ListTile(
       onTap: () {
@@ -605,7 +609,7 @@ class _ExploreSheetBankState extends State<ExploreSheetBank> {
                   height: 5,
                 ),
                 Text(
-                  banks[index].distance,
+                  _getDistance(banks[index].distance.floor()),
                   style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.grey[700],
@@ -725,33 +729,24 @@ class _ExploreSheetBankMitraState extends State<ExploreSheetBankMitra> {
                     ftp['latlong'].latitude,
                     ftp['latlong'].longitude)
                 .then((value) {
-              if (value < 10000) {
-                var distance = value.floor();
-                String _distance = '';
-                if (distance < 1000)
-                  _distance = '($distance m)';
-                else {
-                  var dist = (distance / 1000).toStringAsFixed(1);
-                  _distance = '($dist km)';
-                }
-                final BankMitra bankMitra = BankMitra(
-                  documentId: docs.documents[i].documentID,
-                  latitude: ftp['latlong'].latitude,
-                  longitude: ftp['latlong'].longitude,
-                  mitraName: ftp['bankMitraName'],
-                  bankName: ftp['bank_name'],
-                  bankMitraCode: ftp['bankMitraCode'],
-                  contact: ftp['contact'],
-                  pincode: ftp['pincode'],
-                  address: ftp['address'],
-                  district: ftp['district'],
-                  state: ftp['state'],
-                  distance: _distance,
-                );
-                setState(() {
-                  bankmitras.add(bankMitra);
-                });
-              }
+              final BankMitra bankMitra = BankMitra(
+                documentId: docs.documents[i].documentID,
+                latitude: ftp['latlong'].latitude,
+                longitude: ftp['latlong'].longitude,
+                mitraName: ftp['bankMitraName'],
+                bankName: ftp['bank_name'],
+                bankMitraCode: ftp['bankMitraCode'],
+                contact: ftp['contact'],
+                pincode: ftp['pincode'],
+                address: ftp['address'],
+                district: ftp['district'],
+                state: ftp['state'],
+                distance: value,
+              );
+              setState(() {
+                bankmitras.add(bankMitra);
+                bankmitras.sort((a, b) => a.distance.compareTo(b.distance));
+              });
             });
           }
         }
@@ -923,6 +918,17 @@ class _ExploreSheetBankMitraState extends State<ExploreSheetBankMitra> {
     );
   }
 
+  String _getDistance(distance) {
+    String string = '';
+    if (distance < 1000) {
+      string = '($distance m)';
+    } else {
+      var dist = (distance / 1000).toStringAsFixed(1);
+      string = '($dist km)';
+    }
+    return string;
+  }
+
   _nearbyBankMitra(int index, BuildContext context) {
     return ListTile(
       onTap: () {
@@ -958,7 +964,7 @@ class _ExploreSheetBankMitraState extends State<ExploreSheetBankMitra> {
                   height: 5,
                 ),
                 Text(
-                  bankmitras[index].distance,
+                  _getDistance(bankmitras[index].distance.floor()),
                   style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.grey[700],
@@ -1078,30 +1084,21 @@ class _ExploreSheetPostOfficeState extends State<ExploreSheetPostOffice> {
                     ftp['latlong'].latitude,
                     ftp['latlong'].longitude)
                 .then((value) {
-              if (value < 10000) {
-                var distance = value.floor();
-                String _distance = '';
-                if (distance < 1000)
-                  _distance = '($distance m)';
-                else {
-                  var dist = (distance / 1000).toStringAsFixed(1);
-                  _distance = '($dist km)';
-                }
-                final PostOffice postOffice = PostOffice(
-                  documentId: docs.documents[i].documentID,
-                  latitude: ftp['latlong'].latitude,
-                  longitude: ftp['latlong'].longitude,
-                  type: ftp['type'],
-                  name: ftp['name'],
-                  pincode: ftp['pincode'],
-                  district: ftp['district'],
-                  state: ftp['state'],
-                  distance: _distance,
-                );
-                setState(() {
-                  postoffices.add(postOffice);
-                });
-              }
+              final PostOffice postOffice = PostOffice(
+                documentId: docs.documents[i].documentID,
+                latitude: ftp['latlong'].latitude,
+                longitude: ftp['latlong'].longitude,
+                type: ftp['type'],
+                name: ftp['name'],
+                pincode: ftp['pincode'],
+                district: ftp['district'],
+                state: ftp['state'],
+                distance: value,
+              );
+              setState(() {
+                postoffices.add(postOffice);
+                postoffices.sort((a, b) => a.distance.compareTo(b.distance));
+              });
             });
           }
         }
@@ -1273,6 +1270,17 @@ class _ExploreSheetPostOfficeState extends State<ExploreSheetPostOffice> {
     );
   }
 
+  String _getDistance(distance) {
+    String string = '';
+    if (distance < 1000) {
+      string = '($distance m)';
+    } else {
+      var dist = (distance / 1000).toStringAsFixed(1);
+      string = '($dist km)';
+    }
+    return string;
+  }
+
   _nearbyPostOffice(int index, BuildContext context) {
     return ListTile(
       onTap: () {
@@ -1298,7 +1306,7 @@ class _ExploreSheetPostOfficeState extends State<ExploreSheetPostOffice> {
                   height: 5,
                 ),
                 Text(
-                  postoffices[index].distance,
+                  _getDistance(postoffices[index].distance.floor()),
                   style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.grey[700],
@@ -1418,32 +1426,23 @@ class _ExploreSheetCscState extends State<ExploreSheetCsc> {
                     ftp['latlong'].latitude,
                     ftp['latlong'].longitude)
                 .then((value) {
-              if (value < 10000) {
-                var distance = value.floor();
-                String _distance = '';
-                if (distance < 1000)
-                  _distance = '($distance m)';
-                else {
-                  var dist = (distance / 1000).toStringAsFixed(1);
-                  _distance = '($dist km)';
-                }
-                final Csc csc = Csc(
-                  documentId: docs.documents[i].documentID,
-                  latitude: ftp['latlong'].latitude,
-                  longitude: ftp['latlong'].longitude,
-                  id: ftp['id'],
-                  name: ftp['name'],
-                  type: ftp['type'],
-                  block: ftp['block'],
-                  address: ftp['address'],
-                  district: ftp['district'],
-                  state: ftp['state'],
-                  distance: _distance,
-                );
-                setState(() {
-                  cscs.add(csc);
-                });
-              }
+              final Csc csc = Csc(
+                documentId: docs.documents[i].documentID,
+                latitude: ftp['latlong'].latitude,
+                longitude: ftp['latlong'].longitude,
+                id: ftp['id'],
+                name: ftp['name'],
+                type: ftp['type'],
+                block: ftp['block'],
+                address: ftp['address'],
+                district: ftp['district'],
+                state: ftp['state'],
+                distance: value,
+              );
+              setState(() {
+                cscs.add(csc);
+                cscs.sort((a, b) => a.distance.compareTo(b.distance));
+              });
             });
           }
         }
@@ -1615,6 +1614,17 @@ class _ExploreSheetCscState extends State<ExploreSheetCsc> {
     );
   }
 
+  String _getDistance(distance) {
+    String string = '';
+    if (distance < 1000) {
+      string = '($distance m)';
+    } else {
+      var dist = (distance / 1000).toStringAsFixed(1);
+      string = '($dist km)';
+    }
+    return string;
+  }
+
   _nearbyCsc(int index, BuildContext context) {
     return ListTile(
       onTap: () {
@@ -1640,7 +1650,7 @@ class _ExploreSheetCscState extends State<ExploreSheetCsc> {
                   height: 5,
                 ),
                 Text(
-                  cscs[index].distance,
+                  _getDistance(cscs[index].distance.floor()),
                   style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.grey[700],

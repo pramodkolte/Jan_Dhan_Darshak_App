@@ -184,25 +184,30 @@ class _MyHomePageState extends State<MyHomePage> {
         items: [
           _barIteam(
               EasyLocalization.of(context).delegate.translations.get('atm'),
-              Icons.monetization_on),
+              Icons.monetization_on,
+              Colors.blue[300]),
           _barIteam(
               EasyLocalization.of(context).delegate.translations.get('bank'),
-              Icons.account_balance),
+              Icons.account_balance,
+              Colors.pinkAccent),
           _barIteam(
               EasyLocalization.of(context)
                   .delegate
                   .translations
                   .get('bank_mitra'),
-              Icons.person_pin),
+              Icons.person_pin,
+              Colors.deepOrange[300]),
           _barIteam(
               EasyLocalization.of(context)
                   .delegate
                   .translations
                   .get('post_office'),
-              Icons.local_post_office),
+              Icons.local_post_office,
+              Colors.green[300]),
           _barIteam(
               EasyLocalization.of(context).delegate.translations.get('csc'),
-              Icons.supervised_user_circle),
+              Icons.supervised_user_circle,
+              Colors.purpleAccent[100]),
         ],
       ),
     );
@@ -329,7 +334,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  BottomNavyBarItem _barIteam(String title, IconData myIcon) {
+  BottomNavyBarItem _barIteam(String title, IconData myIcon, Color color) {
     return BottomNavyBarItem(
       icon: Icon(
         myIcon,
@@ -340,6 +345,8 @@ class _MyHomePageState extends State<MyHomePage> {
         style: TextStyle(color: Colors.black),
       ),
       textAlign: TextAlign.center,
+      activeColor: color,
+      inactiveColor: color,
     );
   }
 
