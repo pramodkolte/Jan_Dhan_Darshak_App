@@ -38,6 +38,21 @@ class _SearchPageState extends State<SearchPage> {
   String lastStatus = "";
   final SpeechToText speech = SpeechToText();
 
+  void _searchPlace(String searchText) {
+    setState(() {
+      searchresults.clear();
+    });
+    widget.ftps.forEach((ftp) {
+      if (ftp.name.toLowerCase().contains(searchText.toLowerCase()) ||
+          ftp.address.toLowerCase().contains(searchText.toLowerCase()) ||
+          ftp.extra.toLowerCase().contains(searchText.toLowerCase())) {
+        setState(() {
+          searchresults.add(ftp);
+        });
+      }
+    });
+  }
+
   Future<void> initSpeechState() async {
     bool hasSpeech = await speech.initialize(
         onError: errorListener, onStatus: statusListener);
@@ -45,7 +60,7 @@ class _SearchPageState extends State<SearchPage> {
     setState(() {
       _hasSpeech = hasSpeech;
     });
-    if (_listening && _hasSpeech) startListening();
+    if (_hasSpeech) startListening();
   }
 
   @override
@@ -54,7 +69,10 @@ class _SearchPageState extends State<SearchPage> {
     setState(() {
       _listening = !widget.isText;
     });
-    initSpeechState();
+    if (_listening) initSpeechState();
+    print('name ' + widget.ftps[0].name.toString());
+    print('addess ' + widget.ftps[0].address.toString());
+    print('extra ' + widget.ftps[0].extra.toString());
   }
 
   @override
@@ -90,26 +108,7 @@ class _SearchPageState extends State<SearchPage> {
                   contentPadding: EdgeInsets.all(5),
                 ),
                 controller: textEditingController,
-                onChanged: (searchText) {
-                  setState(() {
-                    searchresults.clear();
-                  });
-                  widget.ftps.forEach((ftp) {
-                    if (ftp.name
-                            .toLowerCase()
-                            .contains(searchText.toLowerCase()) ||
-                        ftp.address
-                            .toLowerCase()
-                            .contains(searchText.toLowerCase()) ||
-                        ftp.extra
-                            .toLowerCase()
-                            .contains(searchText.toLowerCase())) {
-                      setState(() {
-                        searchresults.add(ftp);
-                      });
-                    }
-                  });
-                },
+                onChanged: _searchPlace,
               ),
         actions: <Widget>[
           textEditingController.text.isEmpty
@@ -133,7 +132,7 @@ class _SearchPageState extends State<SearchPage> {
               : IconButton(
                   icon: Icon(Icons.mic, color: Colors.grey[700]),
                   onPressed: () {
-                    startListening();
+                    initSpeechState();
                   },
                 ),
         ],
@@ -194,7 +193,8 @@ class _SearchPageState extends State<SearchPage> {
       lastWords = "Listening...";
       lastError = "";
     });
-    speech.listen(
+    speech
+        .listen(
       onResult: resultListener,
       listenFor: Duration(seconds: 10),
       pauseFor: Duration(seconds: 5),
@@ -202,9 +202,12 @@ class _SearchPageState extends State<SearchPage> {
       onSoundLevelChange: soundLevelListener,
       cancelOnError: true,
       partialResults: true,
-      onDevice: true,
+      //onDevice: true,
       listenMode: ListenMode.search,
-    );
+    )
+        .then((value) {
+      resultListener(value);
+    });
   }
 
   void stopListening() {
@@ -224,19 +227,12 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void resultListener(SpeechRecognitionResult result) {
-    setState(() {
-      lastWords = result.recognizedWords;
-      searchresults.clear();
-    });
-    widget.ftps.forEach((ftp) {
-      if (ftp.name.toLowerCase().contains(lastWords.toLowerCase()) ||
-          ftp.address.toLowerCase().contains(lastWords.toLowerCase()) ||
-          ftp.extra.toLowerCase().contains(lastWords.toLowerCase())) {
-        setState(() {
-          searchresults.add(ftp);
-        });
-      }
-    });
+    if (result.recognizedWords.isNotEmpty) {
+      setState(() {
+        lastWords = result.recognizedWords;
+      });
+      _searchPlace(lastWords);
+    }
   }
 
   void soundLevelListener(double level) {

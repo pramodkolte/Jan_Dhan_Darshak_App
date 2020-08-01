@@ -433,9 +433,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 final _ftp = Ftp(
                     ftpId: documentId,
-                    name: ftp['name'],
+                    name: ftp['bank'],
                     address: ftp['address'],
-                    extra: ftp['block'],
+                    extra: ftp['city'],
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
@@ -685,9 +685,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
                 final _ftp = Ftp(
                     ftpId: documentId,
-                    name: ftp['name'],
+                    name: ftp['bank_name'],
                     address: ftp['address'],
-                    extra: ftp['block'],
+                    extra: ftp['city'],
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
@@ -946,9 +946,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
                 final _ftp = Ftp(
                     ftpId: documentId,
-                    name: ftp['name'],
+                    name: ftp['bank_name'],
                     address: ftp['address'],
-                    extra: ftp['block'],
+                    extra: ftp['bankMitraName'],
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
@@ -1449,8 +1449,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 final _ftp = Ftp(
                     ftpId: documentId,
                     name: ftp['name'],
-                    address: ftp['address'],
-                    extra: ftp['block'],
+                    address: 'Sample Address',
+                    extra: ftp['pincode'],
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
