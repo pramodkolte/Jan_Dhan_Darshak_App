@@ -439,6 +439,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueAzure),
                     markerId: markerId,
                     position: LatLng(
                         ftp['latlong'].latitude, ftp['latlong'].longitude),
@@ -691,6 +693,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueRose),
                     markerId: markerId,
                     position: LatLng(
                         ftp['latlong'].latitude, ftp['latlong'].longitude),
@@ -952,6 +956,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueOrange),
                     markerId: markerId,
                     position: LatLng(
                         ftp['latlong'].latitude, ftp['latlong'].longitude),
@@ -1205,6 +1211,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueGreen),
                     markerId: markerId,
                     position: LatLng(
                         ftp['latlong'].latitude, ftp['latlong'].longitude),
@@ -1454,6 +1462,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     latitude: ftp['latlong'].latitude,
                     longitude: ftp['latlong'].longitude);
                 final Marker marker = Marker(
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                        BitmapDescriptor.hueMagenta),
                     markerId: markerId,
                     position: LatLng(
                         ftp['latlong'].latitude, ftp['latlong'].longitude),

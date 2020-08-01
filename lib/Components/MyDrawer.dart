@@ -35,14 +35,18 @@ class MyDrawer extends StatelessWidget {
               ],
             ),
             Divider(),
+
+            //Change Language
             ListTile(
               leading: Icon(
                 Icons.translate,
               ),
-              title: Text(EasyLocalization.of(context)
-                  .delegate
-                  .translations
-                  .get('change_language')),
+              title: Text(
+                EasyLocalization.of(context)
+                    .delegate
+                    .translations
+                    .get('change_language'),
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed('/changeLanguage');
               },
