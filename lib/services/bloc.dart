@@ -22,7 +22,7 @@ class Favorites {
   }
 
   void dispose() {
-    favoritesStreamController.close(); // close our StreamController
+    favoritesStreamController.close();
   }
 }
 
