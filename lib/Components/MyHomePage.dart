@@ -11,6 +11,7 @@ import 'package:jan_dhan_darshak/Pages/Feedback.dart';
 import 'package:jan_dhan_darshak/Pages/search.dart';
 import 'package:jan_dhan_darshak/services/models.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:jan_dhan_darshak/services/bloc.dart';
 
 class MyHomePage extends StatefulWidget {
   final Position position;
@@ -487,176 +488,210 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ]),
                                   Divider(),
                                   Expanded(
-                                      child: ListView(
-                                          shrinkWrap: true,
-                                          children: [
-                                        Padding(
-                                            padding: EdgeInsets.all(8),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  InkWell(
-                                                      onTap: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        _createPolylines(
-                                                            widget.position,
-                                                            Position(
-                                                                latitude: _ftp
-                                                                    .latitude,
-                                                                longitude: _ftp
-                                                                    .longitude));
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                      child:
+                                          ListView(shrinkWrap: true, children: [
+                                    Padding(
+                                        padding: EdgeInsets.all(8),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.of(context).pop();
+                                                    _createPolylines(
+                                                        widget.position,
+                                                        Position(
+                                                            latitude:
+                                                                _ftp.latitude,
+                                                            longitude: _ftp
+                                                                .longitude));
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .directions,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Directions',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .directions,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ])),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        launch(
-                                                            'tel:9922783755');
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Directions',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ])),
+                                              InkWell(
+                                                  onTap: () {
+                                                    launch('tel:9922783755');
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .call,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Call',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons.call,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ])),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (context) => FeedbackTo(
-                                                                    id:
-                                                                        documentId,
-                                                                    type: 'atm',
-                                                                    placeName: ftp[
-                                                                            'bank'] +
-                                                                        ' ATM')));
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Call',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ])),
+                                              InkWell(
+                                                onTap: () {
+                                                  favourites
+                                                      .addToFavorites(_ftp);
+                                                },
+                                                child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      Container(
+                                                          child: Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Icon(
+                                                                  Icons
+                                                                      .favorite,
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  size: 25)),
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                          .grey[
+                                                                      300]))),
+                                                      SizedBox(height: 8),
+                                                      Text('Add',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.blue))
+                                                    ]),
+                                              ),
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) => FeedbackTo(
+                                                                id: documentId,
+                                                                type: 'atm',
+                                                                placeName: ftp[
+                                                                        'bank'] +
+                                                                    ' ATM')));
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .feedback,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Feedback',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .feedback,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ]))
-                                                ])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.room,
-                                                color: Colors.blue),
-                                            title: Text(ftp['address']),
-                                            subtitle: Text(_distance)),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.more_vert,
-                                                color: Colors.blue),
-                                            title: Text(ftp['city'] +
-                                                ', ' +
-                                                ftp['district'] +
-                                                ', ' +
-                                                ftp['state'] +
-                                                ', ' +
-                                                ftp['pincode'].toString())),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.access_time,
-                                                color: Colors.blue),
-                                            title: Text(
-                                                'Open ' + ftp['atm_timings'])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.call,
-                                                color: Colors.blue),
-                                            title: Text('1234567890')),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.code,
-                                                color: Colors.blue),
-                                            title: Text('ATM Code : ' +
-                                                ftp['atm_code'])),
-                                        SizedBox(height: 32.0)
-                                      ]))
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Feedback',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ]))
+                                            ])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.room,
+                                            color: Colors.blue),
+                                        title: Text(ftp['address']),
+                                        subtitle: Text(_distance)),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.more_vert,
+                                            color: Colors.blue),
+                                        title: Text(ftp['city'] +
+                                            ', ' +
+                                            ftp['district'] +
+                                            ', ' +
+                                            ftp['state'] +
+                                            ', ' +
+                                            ftp['pincode'].toString())),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.access_time,
+                                            color: Colors.blue),
+                                        title:
+                                            Text('Open ' + ftp['atm_timings'])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.call,
+                                            color: Colors.blue),
+                                        title: Text('1234567890')),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.code,
+                                            color: Colors.blue),
+                                        title: Text(
+                                            'ATM Code : ' + ftp['atm_code'])),
+                                    SizedBox(height: 32.0)
+                                  ]))
                                 ]));
                               });
                         }));
@@ -740,187 +775,223 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ]),
                                   Divider(),
                                   Expanded(
-                                      child: ListView(
-                                          shrinkWrap: true,
-                                          children: [
-                                        Padding(
-                                            padding: EdgeInsets.all(8),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  InkWell(
-                                                      onTap: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        _createPolylines(
-                                                            widget.position,
-                                                            Position(
-                                                                latitude: _ftp
-                                                                    .latitude,
-                                                                longitude: _ftp
-                                                                    .longitude));
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                      child:
+                                          ListView(shrinkWrap: true, children: [
+                                    Padding(
+                                        padding: EdgeInsets.all(8),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.of(context).pop();
+                                                    _createPolylines(
+                                                        widget.position,
+                                                        Position(
+                                                            latitude:
+                                                                _ftp.latitude,
+                                                            longitude: _ftp
+                                                                .longitude));
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .directions,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Directions',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .directions,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ])),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        launch(
-                                                            'tel:9922783755');
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Directions',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ])),
+                                              InkWell(
+                                                  onTap: () {
+                                                    launch('tel:9922783755');
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .call,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Call',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons.call,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ])),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (context) => FeedbackTo(
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Call',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ])),
+                                              InkWell(
+                                                onTap: () {
+                                                  favourites
+                                                      .addToFavorites(_ftp);
+                                                },
+                                                child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      Container(
+                                                          child: Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Icon(
+                                                                  Icons
+                                                                      .favorite,
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  size: 25)),
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                          .grey[
+                                                                      300]))),
+                                                      SizedBox(height: 8),
+                                                      Text('Add',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.blue))
+                                                    ]),
+                                              ),
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                FeedbackTo(
                                                                     id:
                                                                         documentId,
                                                                     type:
                                                                         'bank',
                                                                     placeName: ftp[
                                                                         'bank_name'])));
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .feedback,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Feedback',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .feedback,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ]))
-                                                ])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.room,
-                                                color: Colors.blue),
-                                            title: Text(ftp['address']),
-                                            subtitle: Text(_distance)),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.more_vert,
-                                                color: Colors.blue),
-                                            title: Text(ftp['city'] +
-                                                ', ' +
-                                                ftp['district'] +
-                                                ', ' +
-                                                ftp['state'] +
-                                                ', ' +
-                                                ftp['pincode'].toString())),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.access_time,
-                                                color: Colors.blue),
-                                            title: Text(
-                                                'Open ' + ftp['bank_timings'])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.location_city,
-                                                color: Colors.blue),
-                                            title: Text(ftp['branch'])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.call,
-                                                color: Colors.blue),
-                                            title: Text(ftp['contact'])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.code,
-                                                color: Colors.blue),
-                                            title: Text('IFSC Code : ' +
-                                                ftp['ifscCode'])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.code,
-                                                color: Colors.blue),
-                                            title: Text('BSR Code : ' +
-                                                ftp['bsrCode'])),
-                                        SizedBox(height: 32.0)
-                                      ]))
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Feedback',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ]))
+                                            ])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.room,
+                                            color: Colors.blue),
+                                        title: Text(ftp['address']),
+                                        subtitle: Text(_distance)),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.more_vert,
+                                            color: Colors.blue),
+                                        title: Text(ftp['city'] +
+                                            ', ' +
+                                            ftp['district'] +
+                                            ', ' +
+                                            ftp['state'] +
+                                            ', ' +
+                                            ftp['pincode'].toString())),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.access_time,
+                                            color: Colors.blue),
+                                        title: Text(
+                                            'Open ' + ftp['bank_timings'])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.location_city,
+                                            color: Colors.blue),
+                                        title: Text(ftp['branch'])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.call,
+                                            color: Colors.blue),
+                                        title: Text(ftp['contact'])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.code,
+                                            color: Colors.blue),
+                                        title: Text(
+                                            'IFSC Code : ' + ftp['ifscCode'])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.code,
+                                            color: Colors.blue),
+                                        title: Text(
+                                            'BSR Code : ' + ftp['bsrCode'])),
+                                    SizedBox(height: 32.0)
+                                  ]))
                                 ]));
                               });
                         }));
@@ -1004,179 +1075,212 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ]),
                                   Divider(),
                                   Expanded(
-                                      child: ListView(
-                                          shrinkWrap: true,
-                                          children: [
-                                        Padding(
-                                            padding: EdgeInsets.all(8),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  InkWell(
-                                                      onTap: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        _createPolylines(
-                                                            widget.position,
-                                                            Position(
-                                                                latitude: _ftp
-                                                                    .latitude,
-                                                                longitude: _ftp
-                                                                    .longitude));
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                      child:
+                                          ListView(shrinkWrap: true, children: [
+                                    Padding(
+                                        padding: EdgeInsets.all(8),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.of(context).pop();
+                                                    _createPolylines(
+                                                        widget.position,
+                                                        Position(
+                                                            latitude:
+                                                                _ftp.latitude,
+                                                            longitude: _ftp
+                                                                .longitude));
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .directions,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Directions',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .directions,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ])),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        launch(
-                                                            'tel:9922783755');
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Directions',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ])),
+                                              InkWell(
+                                                  onTap: () {
+                                                    launch('tel:9922783755');
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .call,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Call',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons.call,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ])),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (context) => FeedbackTo(
-                                                                    id:
-                                                                        documentId,
-                                                                    type:
-                                                                        'bank-mitra',
-                                                                    placeName: ftp[
-                                                                        'bank_name'])));
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Call',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ])),
+                                              InkWell(
+                                                onTap: () {
+                                                  favourites
+                                                      .addToFavorites(_ftp);
+                                                },
+                                                child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      Container(
+                                                          child: Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Icon(
+                                                                  Icons
+                                                                      .favorite,
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  size: 25)),
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                          .grey[
+                                                                      300]))),
+                                                      SizedBox(height: 8),
+                                                      Text('Add',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.blue))
+                                                    ]),
+                                              ),
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) => FeedbackTo(
+                                                                id: documentId,
+                                                                type:
+                                                                    'bank-mitra',
+                                                                placeName: ftp[
+                                                                    'bank_name'])));
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .feedback,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Feedback',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .feedback,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ]))
-                                                ])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.room,
-                                                color: Colors.blue),
-                                            title: Text(ftp['address']),
-                                            subtitle: Text(_distance)),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.more_vert,
-                                                color: Colors.blue),
-                                            title: Text(ftp['district'] +
-                                                ', ' +
-                                                ftp['state'] +
-                                                ', ' +
-                                                ftp['pincode'].toString())),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.access_time,
-                                                color: Colors.blue),
-                                            title:
-                                                Text('Open 10:00AM To 5:00PM')),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.person,
-                                                color: Colors.blue),
-                                            title: Text(ftp['bankMitraName'])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.call,
-                                                color: Colors.blue),
-                                            title: Text(ftp['contact'])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.code,
-                                                color: Colors.blue),
-                                            title: Text('Bank Mitra Code : ' +
-                                                ftp['bankMitraCode'])),
-                                        SizedBox(height: 32.0)
-                                      ]))
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Feedback',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ]))
+                                            ])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.room,
+                                            color: Colors.blue),
+                                        title: Text(ftp['address']),
+                                        subtitle: Text(_distance)),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.more_vert,
+                                            color: Colors.blue),
+                                        title: Text(ftp['district'] +
+                                            ', ' +
+                                            ftp['state'] +
+                                            ', ' +
+                                            ftp['pincode'].toString())),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.access_time,
+                                            color: Colors.blue),
+                                        title: Text('Open 10:00AM To 5:00PM')),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.person,
+                                            color: Colors.blue),
+                                        title: Text(ftp['bankMitraName'])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.call,
+                                            color: Colors.blue),
+                                        title: Text(ftp['contact'])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.code,
+                                            color: Colors.blue),
+                                        title: Text('Bank Mitra Code : ' +
+                                            ftp['bankMitraCode'])),
+                                    SizedBox(height: 32.0)
+                                  ]))
                                 ]));
                               });
                         }));
@@ -1261,174 +1365,207 @@ class _MyHomePageState extends State<MyHomePage> {
                                       ]),
                                   Divider(),
                                   Expanded(
-                                      child: ListView(
-                                          shrinkWrap: true,
-                                          children: [
-                                        Padding(
-                                            padding: EdgeInsets.all(8),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  InkWell(
-                                                      onTap: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        _createPolylines(
-                                                            widget.position,
-                                                            Position(
-                                                                latitude: _ftp
-                                                                    .latitude,
-                                                                longitude: _ftp
-                                                                    .longitude));
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                      child:
+                                          ListView(shrinkWrap: true, children: [
+                                    Padding(
+                                        padding: EdgeInsets.all(8),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.of(context).pop();
+                                                    _createPolylines(
+                                                        widget.position,
+                                                        Position(
+                                                            latitude:
+                                                                _ftp.latitude,
+                                                            longitude: _ftp
+                                                                .longitude));
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .directions,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Directions',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .directions,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ])),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        launch(
-                                                            'tel:9922783755');
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Directions',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ])),
+                                              InkWell(
+                                                  onTap: () {
+                                                    launch('tel:9922783755');
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .call,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Call',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons.call,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ])),
-                                                  InkWell(
-                                                      onTap: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (context) => FeedbackTo(
-                                                                    id:
-                                                                        documentId,
-                                                                    type:
-                                                                        'post-office',
-                                                                    placeName: ftp[
-                                                                        'name'])));
-                                                      },
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: <Widget>[
-                                                            Container(
-                                                                child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Call',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ])),
+                                              InkWell(
+                                                onTap: () {
+                                                  favourites
+                                                      .addToFavorites(_ftp);
+                                                },
+                                                child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: <Widget>[
+                                                      Container(
+                                                          child: Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Icon(
+                                                                  Icons
+                                                                      .favorite,
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  size: 25)),
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                          .grey[
+                                                                      300]))),
+                                                      SizedBox(height: 8),
+                                                      Text('Add',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.blue))
+                                                    ]),
+                                              ),
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) => FeedbackTo(
+                                                                id: documentId,
+                                                                type:
+                                                                    'post-office',
+                                                                placeName: ftp[
+                                                                    'name'])));
+                                                  },
+                                                  child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        Container(
+                                                            child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
                                                                             8.0),
-                                                                    child: Icon(
-                                                                        Icons
-                                                                            .feedback,
-                                                                        color: Colors
-                                                                            .blue,
-                                                                        size:
-                                                                            25)),
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    border: Border.all(
-                                                                        color: Colors
-                                                                            .grey[300]))),
-                                                            SizedBox(height: 8),
-                                                            Text('Feedback',
-                                                                style: TextStyle(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .feedback,
                                                                     color: Colors
-                                                                        .blue))
-                                                          ]))
-                                                ])),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.room,
-                                                color: Colors.blue),
-                                            title: Text(
-                                                'This is sample address for demo purpose'),
-                                            subtitle: Text(_distance)),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.more_vert,
-                                                color: Colors.blue),
-                                            title: Text(ftp['district'] +
-                                                ', ' +
-                                                ftp['state'] +
-                                                ', ' +
-                                                ftp['pincode'].toString())),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.access_time,
-                                                color: Colors.blue),
-                                            title:
-                                                Text('Open 10:00AM To 5:00PM')),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.call,
-                                                color: Colors.blue),
-                                            title: Text('1234567890')),
-                                        Divider(),
-                                        ListTile(
-                                            leading: Icon(Icons.subtitles,
-                                                color: Colors.blue),
-                                            title: Text(ftp['type'])),
-                                        SizedBox(height: 32.0)
-                                      ]))
+                                                                        .blue,
+                                                                    size: 25)),
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        300]))),
+                                                        SizedBox(height: 8),
+                                                        Text('Feedback',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue))
+                                                      ]))
+                                            ])),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.room,
+                                            color: Colors.blue),
+                                        title: Text(
+                                            'This is sample address for demo purpose'),
+                                        subtitle: Text(_distance)),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.more_vert,
+                                            color: Colors.blue),
+                                        title: Text(ftp['district'] +
+                                            ', ' +
+                                            ftp['state'] +
+                                            ', ' +
+                                            ftp['pincode'].toString())),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.access_time,
+                                            color: Colors.blue),
+                                        title: Text('Open 10:00AM To 5:00PM')),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.call,
+                                            color: Colors.blue),
+                                        title: Text('1234567890')),
+                                    Divider(),
+                                    ListTile(
+                                        leading: Icon(Icons.subtitles,
+                                            color: Colors.blue),
+                                        title: Text(ftp['type'])),
+                                    SizedBox(height: 32.0)
+                                  ]))
                                 ]));
                               });
                         }));
@@ -1602,6 +1739,45 @@ class _MyHomePageState extends State<MyHomePage> {
                                                                     color: Colors
                                                                         .blue))
                                                           ])),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      favourites
+                                                          .addToFavorites(_ftp);
+                                                    },
+                                                    child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: <Widget>[
+                                                          Container(
+                                                              child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              8.0),
+                                                                  child: Icon(
+                                                                      Icons
+                                                                          .favorite,
+                                                                      color: Colors
+                                                                          .blue,
+                                                                      size:
+                                                                          25)),
+                                                              decoration: BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                  border: Border.all(
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          300]))),
+                                                          SizedBox(height: 8),
+                                                          Text('Add',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .blue))
+                                                        ]),
+                                                  ),
                                                   InkWell(
                                                       onTap: () {
                                                         Navigator.push(

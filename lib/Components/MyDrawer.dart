@@ -53,6 +53,17 @@ class MyDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
+                Icons.favorite,
+              ),
+              title: Text(
+                'Favourite Places',
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed('/favourites');
+              },
+            ),
+            ListTile(
+              leading: Icon(
                 Icons.help_outline,
               ),
               title: Text(EasyLocalization.of(context)
