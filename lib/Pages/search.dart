@@ -27,7 +27,6 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   TextEditingController textEditingController = TextEditingController();
   List<Ftp> searchresults = [];
-
   bool _hasSpeech = false;
   bool _listening;
   double level = 0.0;
@@ -53,6 +52,17 @@ class _SearchPageState extends State<SearchPage> {
     });
   }
 
+  String _getDistance(distance) {
+    String string = '';
+    if (distance < 1000) {
+      string = '($distance m)';
+    } else {
+      var dist = (distance / 1000).toStringAsFixed(1);
+      string = '($dist km)';
+    }
+    return string;
+  }
+
   Future<void> initSpeechState() async {
     bool hasSpeech = await speech.initialize(
         onError: errorListener, onStatus: statusListener);
@@ -68,6 +78,7 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
     setState(() {
       _listening = !widget.isText;
+      widget.ftps.sort((a, b) => a.distance.compareTo(b.distance));
     });
     if (_listening) initSpeechState();
     print('name ' + widget.ftps[0].name.toString());
@@ -150,6 +161,11 @@ class _SearchPageState extends State<SearchPage> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Text(
+                          _getDistance(
+                              widget.ftps.elementAt(index).distance.floor()),
+                          style: TextStyle(color: Colors.green)),
+                      SizedBox(height: 5),
                       Text(widget.ftps.elementAt(index).address),
                       SizedBox(height: 5),
                       Text(widget.ftps.elementAt(index).extra),
@@ -166,13 +182,18 @@ class _SearchPageState extends State<SearchPage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   onTap: () => widget.placeClick(
-                      widget.ftps.elementAt(index).latitude,
-                      widget.ftps.elementAt(index).longitude,
-                      widget.ftps.elementAt(index).ftpId),
+                      searchresults.elementAt(index).latitude,
+                      searchresults.elementAt(index).longitude,
+                      searchresults.elementAt(index).ftpId),
                   title: Text(searchresults.elementAt(index).name),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Text(
+                          _getDistance(
+                              searchresults.elementAt(index).distance.floor()),
+                          style: TextStyle(color: Colors.green)),
+                      SizedBox(height: 5),
                       Text(searchresults.elementAt(index).address),
                       SizedBox(height: 5),
                       Text(searchresults.elementAt(index).extra),

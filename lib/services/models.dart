@@ -13,6 +13,7 @@ class Ftp {
   final name;
   final address;
   final extra;
+  final distance;
 
   Ftp({
     this.ftpId,
@@ -21,6 +22,7 @@ class Ftp {
     this.extra,
     this.latitude,
     this.longitude,
+    this.distance,
   });
 }
 

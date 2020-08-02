@@ -96,7 +96,7 @@ class Help extends StatelessWidget {
                 EasyLocalization.of(context)
                     .delegate
                     .translations
-                    .get('Search_d')),
+                    .get('search_d')),
             _buildTile(
                 EasyLocalization.of(context)
                     .delegate

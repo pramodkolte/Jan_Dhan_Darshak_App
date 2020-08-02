@@ -444,7 +444,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     address: ftp['address'],
                     extra: ftp['city'],
                     latitude: ftp['latlong'].latitude,
-                    longitude: ftp['latlong'].longitude);
+                    longitude: ftp['latlong'].longitude,
+                    distance: value);
                 final Marker marker = Marker(
                     icon: BitmapDescriptor.defaultMarkerWithHue(
                         BitmapDescriptor.hueAzure),
@@ -698,7 +699,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     address: ftp['address'],
                     extra: ftp['city'],
                     latitude: ftp['latlong'].latitude,
-                    longitude: ftp['latlong'].longitude);
+                    longitude: ftp['latlong'].longitude,
+                    distance: value);
                 final Marker marker = Marker(
                     icon: BitmapDescriptor.defaultMarkerWithHue(
                         BitmapDescriptor.hueRose),
@@ -961,7 +963,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     address: ftp['address'],
                     extra: ftp['bankMitraName'],
                     latitude: ftp['latlong'].latitude,
-                    longitude: ftp['latlong'].longitude);
+                    longitude: ftp['latlong'].longitude,
+                    distance: value);
                 final Marker marker = Marker(
                     icon: BitmapDescriptor.defaultMarkerWithHue(
                         BitmapDescriptor.hueOrange),
@@ -1216,7 +1219,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     address: ftp['address'],
                     extra: ftp['block'],
                     latitude: ftp['latlong'].latitude,
-                    longitude: ftp['latlong'].longitude);
+                    longitude: ftp['latlong'].longitude,
+                    distance: value);
                 final Marker marker = Marker(
                     icon: BitmapDescriptor.defaultMarkerWithHue(
                         BitmapDescriptor.hueGreen),
@@ -1467,7 +1471,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     address: 'Sample Address',
                     extra: ftp['pincode'],
                     latitude: ftp['latlong'].latitude,
-                    longitude: ftp['latlong'].longitude);
+                    longitude: ftp['latlong'].longitude,
+                    distance: value);
                 final Marker marker = Marker(
                     icon: BitmapDescriptor.defaultMarkerWithHue(
                         BitmapDescriptor.hueMagenta),
