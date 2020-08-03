@@ -6,6 +6,7 @@ import 'package:jan_dhan_darshak/services/models.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class SearchPage extends StatefulWidget {
   final List<Ftp> ftps;
@@ -36,6 +37,7 @@ class _SearchPageState extends State<SearchPage> {
   String lastError = "";
   String lastStatus = "";
   final SpeechToText speech = SpeechToText();
+  FlutterTts flutterTts;
 
   void _searchPlace(String searchText) {
     setState(() {
@@ -50,6 +52,24 @@ class _SearchPageState extends State<SearchPage> {
         });
       }
     });
+    if (_listening && searchresults.isNotEmpty) {
+      Ftp ftp = searchresults[0];
+      String distance = _getDist(ftp.distance);
+      String string =
+          'Nearest place is ' + ftp.name + ' which is ' + distance + ' away.';
+      _speak(string);
+    }
+  }
+
+  String _getDist(distance) {
+    String string = '';
+    if (distance < 1000) {
+      string = '$distance meter';
+    } else {
+      var dist = (distance / 1000).toStringAsFixed(1);
+      string = '$dist kilometer';
+    }
+    return string;
   }
 
   String _getDistance(distance) {
@@ -73,6 +93,13 @@ class _SearchPageState extends State<SearchPage> {
     if (_hasSpeech) startListening();
   }
 
+  Future _speak(String text) async {
+    if (text.isNotEmpty && text != null) {
+      var result = await flutterTts.speak(text);
+      print(result);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -80,10 +107,9 @@ class _SearchPageState extends State<SearchPage> {
       _listening = !widget.isText;
       widget.ftps.sort((a, b) => a.distance.compareTo(b.distance));
     });
+    flutterTts = FlutterTts();
+    flutterTts.setVolume(1.0);
     if (_listening) initSpeechState();
-    print('name ' + widget.ftps[0].name.toString());
-    print('addess ' + widget.ftps[0].address.toString());
-    print('extra ' + widget.ftps[0].extra.toString());
   }
 
   @override

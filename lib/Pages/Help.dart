@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:jan_dhan_darshak/Pages/userguides.dart';
 
 class Help extends StatelessWidget {
   @override
@@ -21,6 +22,16 @@ class Help extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: ListView(
           children: <Widget>[
+            SizedBox(height: 8),
+            ListTile(
+              title: Text('How to use ATM'),
+              leading: Icon(Icons.card_membership),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => AtmHelp()),
+                );
+              },
+            ),
             //Divider(),
             ExpansionTile(
               initiallyExpanded: true,
@@ -51,7 +62,6 @@ class Help extends StatelessWidget {
                     .delegate
                     .translations
                     .get('prerequisites_d')),
-
             _buildTile(
                 EasyLocalization.of(context)
                     .delegate
