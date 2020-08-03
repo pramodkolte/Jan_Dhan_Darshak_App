@@ -112,7 +112,7 @@ class _ExploreSheetAtmState extends State<ExploreSheetAtm> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 16),
                             child: Center(
-                              child: Text('No ATM within 10 km'),
+                              child: CircularProgressIndicator(),
                             ),
                           ),
                         );
@@ -149,6 +149,17 @@ class _ExploreSheetAtmState extends State<ExploreSheetAtm> {
                               SizedBox(
                                 height: 8.0,
                               ),
+                              atms.length == 0
+                                  ? Container(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 16),
+                                        child: Center(
+                                          child: Text('No nearby ATM found'),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                             ],
                           ),
                         );
@@ -453,17 +464,6 @@ class _ExploreSheetBankState extends State<ExploreSheetBank> {
                     controller: scrollController,
                     itemCount: banks.length + 1,
                     itemBuilder: (BuildContext context, int index) {
-                      if (banks.length == 0) {
-                        return Container(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 16),
-                            child: Center(
-                              child: Text('No ATM within 10 km'),
-                            ),
-                          ),
-                        );
-                      }
                       if (index == 0) {
                         return Container(
                           child: Column(
@@ -496,6 +496,17 @@ class _ExploreSheetBankState extends State<ExploreSheetBank> {
                               SizedBox(
                                 height: 8.0,
                               ),
+                              banks.length == 0
+                                  ? Container(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 16),
+                                        child: Center(
+                                          child: Text('No nearby bank found'),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                             ],
                           ),
                         );
@@ -798,17 +809,6 @@ class _ExploreSheetBankMitraState extends State<ExploreSheetBankMitra> {
                     controller: scrollController,
                     itemCount: bankmitras.length + 1,
                     itemBuilder: (BuildContext context, int index) {
-                      if (bankmitras.length == 0) {
-                        return Container(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 16),
-                            child: Center(
-                              child: Text('No ATM within 10 km'),
-                            ),
-                          ),
-                        );
-                      }
                       if (index == 0) {
                         return Container(
                           child: Column(
@@ -841,6 +841,18 @@ class _ExploreSheetBankMitraState extends State<ExploreSheetBankMitra> {
                               SizedBox(
                                 height: 8.0,
                               ),
+                              bankmitras.length == 0
+                                  ? Container(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 16),
+                                        child: Center(
+                                          child: Text(
+                                              'No nearby bank mitra found'),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                             ],
                           ),
                         );
@@ -1150,17 +1162,6 @@ class _ExploreSheetPostOfficeState extends State<ExploreSheetPostOffice> {
                     controller: scrollController,
                     itemCount: postoffices.length + 1,
                     itemBuilder: (BuildContext context, int index) {
-                      if (postoffices.length == 0) {
-                        return Container(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 16),
-                            child: Center(
-                              child: Text('No ATM within 10 km'),
-                            ),
-                          ),
-                        );
-                      }
                       if (index == 0) {
                         return Container(
                           child: Column(
@@ -1193,6 +1194,18 @@ class _ExploreSheetPostOfficeState extends State<ExploreSheetPostOffice> {
                               SizedBox(
                                 height: 8.0,
                               ),
+                              postoffices.length == 0
+                                  ? Container(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 16),
+                                        child: Center(
+                                          child: Text(
+                                              'No nearby post office found'),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                             ],
                           ),
                         );
@@ -1494,17 +1507,6 @@ class _ExploreSheetCscState extends State<ExploreSheetCsc> {
                     controller: scrollController,
                     itemCount: cscs.length + 1,
                     itemBuilder: (BuildContext context, int index) {
-                      if (cscs.length == 0) {
-                        return Container(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 16),
-                            child: Center(
-                              child: Text('No ATM within 10 km'),
-                            ),
-                          ),
-                        );
-                      }
                       if (index == 0) {
                         return Container(
                           child: Column(
@@ -1537,6 +1539,17 @@ class _ExploreSheetCscState extends State<ExploreSheetCsc> {
                               SizedBox(
                                 height: 8.0,
                               ),
+                              cscs.length == 0
+                                  ? Container(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 16),
+                                        child: Center(
+                                          child: Text('No nearby csc found'),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                             ],
                           ),
                         );

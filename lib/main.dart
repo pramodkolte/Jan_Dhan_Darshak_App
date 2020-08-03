@@ -9,7 +9,7 @@ import 'package:jan_dhan_darshak/Pages/Help.dart';
 import 'package:jan_dhan_darshak/Pages/AboutUs.dart';
 import 'package:jan_dhan_darshak/Pages/Disclaimer.dart';
 import 'package:jan_dhan_darshak/Pages/favorites.dart';
-import 'package:jan_dhan_darshak/root.dart';
+import 'package:jan_dhan_darshak/Pages/introscreen.dart';
 
 void main() => runApp(
       EasyLocalization(
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       initialRoute: '/',
       routes: {
-        '/': (context) => RootPage(),
+        '/': (context) => SplashScreen(),
         '/changeLanguage': (context) => ChangeLanguage(),
         '/favourites': (context) => FavoritePlaces(),
         '/placeSuggest': (context) => PlaceSuggestion(),
